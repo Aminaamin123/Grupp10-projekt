@@ -1,5 +1,6 @@
 import React from 'react';
 import Spotify from './Spotify';
+import Song from './Song';
 
 export default function Results() {
     return (
