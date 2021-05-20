@@ -1,9 +1,16 @@
-import React from 'react'
+import React from 'react';
+import Spotify from './Spotify';
 
 export default function Results() {
     return (
         <div>
-            Resultat
+            Show resultat of all matching songs
+            If only one song: display on spotify else: list + click function
+            <ul>
+                All matches <Song/> 
+            </ul>
+            <Spotify/> 
+
         </div>
     )
 }
