@@ -36,17 +36,20 @@ export default function Spotify() {
             };
             request.get(options, function(error, response, body) {
               console.log(body);
-              setSong(body.external_urls.spotify)
+              setSong(body)
             });
           }
         });
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [URL])
-
+     //"spotify:album:3a0UOgDWw2pTajw85QPMiz"
     if(song){
         return (
             <div>
-                Spotify {song}
+                Spotify {song.external_urls.spotify} {song.track_number} {song.name} {song.uri} {song.album.id} 
+                <iframe src="https://open.spotify.com/embed/album/3a0UOgDWw2pTajw85QPMiz" width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
+
+                <iframe src="https://open.spotify.com/track/6rqhFgbbKwnb9MLmUQDhG6" width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
         )
     }
