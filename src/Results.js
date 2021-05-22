@@ -2,12 +2,10 @@ import React from 'react';
 import Spotify from './Spotify';
 import Song from './Song';
 
-export default function Results(props) {
-    console.log(props.item)
+export default function Results() {
     return (
-        //TODO API request to match song, Show resultat of all matching songs
         <div>
-           
+            Show resultat of all matching songs
             If only one song: display on spotify else: list + click function
             <ul>
                 All matches <Song/> 

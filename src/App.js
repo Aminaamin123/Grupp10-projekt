@@ -4,12 +4,8 @@ import Search from './Search';
 function App() {
   return (
     <div>
-      <h1 className="display-4 fw-normal" >Correspondre</h1>
-      <p> Welcome .... here you can....  </p>
+      <h1>Hitta låten</h1>
       <Search/>
-      <footer> 
-        .....
-      </footer>
     </div>
   );
 }
