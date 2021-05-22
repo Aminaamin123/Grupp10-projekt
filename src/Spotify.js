@@ -5,9 +5,9 @@ export default function Spotify() {
     const [song, setSong] = useState(null)
 
     useEffect(() => {
+        const track = "6rqhFgbbKwnb9MLmUQDhG6" // (should be the id from Song-component) 
         var URL = 'https://api.spotify.com/v1/tracks/' // link of API
-        // 6rqhFgbbKwnb9MLmUQDhG6 (should be the id from Song-component) 
-        URL += "6rqhFgbbKwnb9MLmUQDhG6" // adding track id to link
+        URL += track // adding track id to link
         var request = require('request');
         // client credentials 
         var client_id = 'b936ad39fb5d455d9feaf0d6e67b51cd'; // client id
@@ -49,7 +49,7 @@ export default function Spotify() {
         return (
             <div>
                 Spotify {song.external_urls.spotify} {song.track_number} {song.name} {song.uri} {song.album.id} 
-                <iframe src={link} width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src={link} width="500" height="380" title="Spotify" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
         )
     }
