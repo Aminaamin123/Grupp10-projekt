@@ -44,13 +44,14 @@ export default function Spotify() {
     }, [URL])
 
     if(song){
-      var link = "https://open.spotify.com/embed/album/"
-      link += song.album.id //example 3a0UOgDWw2pTajw85QPMiz
+      var trackLink ="https://open.spotify.com/embed/track/"
+      trackLink += "6rqhFgbbKwnb9MLmUQDhG6"
         return (
             <div>
-                Spotify {song.external_urls.spotify} {song.track_number} {song.name} {song.uri} {song.album.id} 
-                <iframe src={link} width="500" height="380" title="Spotify" allowtransparency="true" allow="encrypted-media"></iframe>
-                <iframe src="https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6" width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
+                <h1>Spotify</h1>
+                <a href={song.album.external_urls.spotify} target="blank">See the album</a>
+                {song.name}
+                <iframe src={trackLink} width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
         )
     }
