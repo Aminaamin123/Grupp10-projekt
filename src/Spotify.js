@@ -50,6 +50,7 @@ export default function Spotify() {
             <div>
                 Spotify {song.external_urls.spotify} {song.track_number} {song.name} {song.uri} {song.album.id} 
                 <iframe src={link} width="500" height="380" title="Spotify" allowtransparency="true" allow="encrypted-media"></iframe>
+                <iframe src="https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6" width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
             </div>
         )
     }
