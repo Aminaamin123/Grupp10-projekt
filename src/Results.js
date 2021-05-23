@@ -4,16 +4,22 @@ import Song from './Song';
 
 export default function Results(props) {
     console.log(props.item)
-    return (
-        //TODO API request to match song, Show resultat of all matching songs
-        <div>
-           
-            If only one song: display on spotify else: list + click function
-            <ul>
-                All matches <Song/> 
-            </ul>
-            <Spotify/> 
+    const songs = []
 
-        </div>
+    if (songs > 1){
+        return (
+            //TODO API request to match song, Show resultat of all matching songs
+            <div>
+               
+                If only one song: display on spotify else: list + click function
+                <ul>
+                    All matches <Song/> 
+                </ul>
+    
+            </div>
+        )
+    }
+    return (
+        <Spotify item={songs}/> 
     )
 }
