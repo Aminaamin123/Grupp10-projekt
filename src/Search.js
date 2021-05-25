@@ -16,7 +16,7 @@ export default function Search() {
             <from>
                 <fieldset>
                     <div className="mb-3">
-                        <label for="lyric">Search for after a song:</label>
+                        <label htmlfor="lyric">Search for after a song:</label>
                         <input className="form-control" type="text" id="lyric" placeholder="Enter your lyric..." ref={inputLyric} />
                     </div>
                     <input type="submit" className="btn btn-success mt-3" value="Search" onClick={setLyric} />
