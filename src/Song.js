@@ -1,9 +1,10 @@
 import React from 'react'
 
-export default function Song() {
+export default function Song(props) {
     return (
         <li>
-            Display the song 
+            {props.item.track.artist_name} -
+            {props.item.track.track_name}
         </li>
     )
 }
