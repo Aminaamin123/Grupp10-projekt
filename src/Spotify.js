@@ -54,7 +54,7 @@ export default function Spotify() {
                 
                 <div className="container">
                   <div className="card-deck mb-3">
-                    <div className="card mb-4 box-shadow" style={{width: "600px;"}}>
+                    <div className="card mb-4 box-shadow" style={{ width: '35rem' }}>
                       <div className="card-header">
                         Preview of track
                       </div> 
@@ -66,7 +66,7 @@ export default function Spotify() {
                         </form>
                       </div>
                     </div>
-                    <div className="card mb-4 box-shadow">
+                    <div className="card mb-4 box-shadow" style={{ width: '35rem' }}>
                       <div className="card-header">
                         Preview of album
                       </div> 
