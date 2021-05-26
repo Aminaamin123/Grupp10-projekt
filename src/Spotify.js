@@ -54,7 +54,7 @@ export default function Spotify() {
                 
                 <div className="container">
                 <div class="d-flex flex-wrap">
-                  <div class="order-3 p-2">
+                  <div class="order-1 p-2">
                     <div className="card mb-4 rounded-4 box-shadow" style={{ width: '30rem' }}>
                         <div className="card-header">
                           Preview of track
@@ -62,7 +62,7 @@ export default function Spotify() {
                         <div className="card-body">
                           <h4> {song.name}</h4>
                           <iframe src={trackLink} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
-                          <form method="get" action="#" target="blank">
+                          <form method="get" action={song.external_urls.spotify} target="blank">
                           <button type="submit" className="btn btn-success">Take me to track</button>
                           </form>
                         </div>
@@ -74,10 +74,10 @@ export default function Spotify() {
                           Preview of album
                         </div> 
                         <div className="card-body">
-                        <h4> Album name </h4>
+                        <h4> {song.album.name}</h4>
                           <iframe src={albumLink} width="450" height="330" allowtransparency="true" allow="encrypted-media"></iframe>
                           <form method="get" action={song.album.external_urls.spotify} target="blank">
-                          <button type="submit" className="btn btn-success">Take me to album</button>
+                         <button type="submit" className="btn btn-success">Take me to album</button> 
                           </form>
                         </div>
                       </div>
