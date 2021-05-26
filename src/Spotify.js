@@ -53,31 +53,36 @@ export default function Spotify() {
                 <h1 className="mt-3 text-white bg-success">Spotify</h1>
                 
                 <div className="container">
-                  <div className="card-deck mb-3">
-                    <div className="card mb-4 box-shadow" style={{ width: '35rem' }}>
-                      <div className="card-header">
-                        Preview of track
-                      </div> 
-                      <div className="card-body">
-                        <h4> {song.name}</h4>
-                        <iframe src={trackLink} width="500" height="380" allowtransparency="true" allow="encrypted-media"> </iframe>
-                        <form method="get" action="#" target="blank">
-                        <button type="submit" className="btn btn-success">Take me to track</button>
-                        </form>
+                <div class="d-flex flex-wrap">
+                  <div class="order-3 p-2">
+                    <div className="card mb-4 rounded-4 box-shadow" style={{ width: '30rem' }}>
+                        <div className="card-header">
+                          Preview of track
+                        </div> 
+                        <div className="card-body">
+                          <h4> {song.name}</h4>
+                          <iframe src={trackLink} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
+                          <form method="get" action="#" target="blank">
+                          <button type="submit" className="btn btn-success">Take me to track</button>
+                          </form>
+                        </div>
                       </div>
-                    </div>
-                    <div className="card mb-4 box-shadow" style={{ width: '35rem' }}>
-                      <div className="card-header">
-                        Preview of album
-                      </div> 
-                      <div className="card-body">
-                        <iframe src={albumLink} width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
-                        <form method="get" action={song.album.external_urls.spotify} target="blank">
-                        <button type="submit" className="btn btn-success">Take me to album</button>
-                        </form>
                       </div>
-                    </div>
+                  <div class="order-2 p-2">
+                  <div className="card mb-4 box-shadow" style={{ width: '30rem' }}>
+                        <div className="card-header">
+                          Preview of album
+                        </div> 
+                        <div className="card-body">
+                        <h4> Album name </h4>
+                          <iframe src={albumLink} width="450" height="330" allowtransparency="true" allow="encrypted-media"></iframe>
+                          <form method="get" action={song.album.external_urls.spotify} target="blank">
+                          <button type="submit" className="btn btn-success">Take me to album</button>
+                          </form>
+                        </div>
+                      </div>
                   </div>
+                </div>
                 </div>
             </div>
         )
