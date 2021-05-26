@@ -6,8 +6,10 @@ export default function Search() {
 
     const inputLyric = useRef();
 
-    function setLyric(){
+    function setLyric(event){
+       event.preventDefault();
        setSong(inputLyric.current.value)
+       inputLyric.current.value = "";
     }
 
     return (
