@@ -46,12 +46,39 @@ export default function Spotify() {
     if(song){
       var trackLink ="https://open.spotify.com/embed/track/"
       trackLink += "6rqhFgbbKwnb9MLmUQDhG6"
+      var albumLink ="https://open.spotify.com/embed/album/"
+      albumLink += "3a0UOgDWw2pTajw85QPMiz"
         return (
             <div>
-                <h1>Spotify</h1>
-                <a href={song.album.external_urls.spotify} target="blank">See the album</a>
-                {song.name}
-                <iframe src={trackLink} width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
+                <h1 className="mt-3 text-white bg-success">Spotify</h1>
+                
+                <div className="container">
+                  <div className="card-deck mb-3">
+                    <div className="card mb-4 box-shadow" style={{width: "600px;"}}>
+                      <div className="card-header">
+                        Preview of track
+                      </div> 
+                      <div className="card-body">
+                        <h4> {song.name}</h4>
+                        <iframe src={trackLink} width="500" height="380" allowtransparency="true" allow="encrypted-media"> </iframe>
+                        <form method="get" action="#" target="blank">
+                        <button type="submit" className="btn btn-success">Take me to track</button>
+                        </form>
+                      </div>
+                    </div>
+                    <div className="card mb-4 box-shadow">
+                      <div className="card-header">
+                        Preview of album
+                      </div> 
+                      <div className="card-body">
+                        <iframe src={albumLink} width="500" height="380" allowtransparency="true" allow="encrypted-media"></iframe>
+                        <form method="get" action={song.album.external_urls.spotify} target="blank">
+                        <button type="submit" className="btn btn-success">Take me to album</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                </div>
             </div>
         )
     }

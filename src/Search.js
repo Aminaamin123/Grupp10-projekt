@@ -9,19 +9,16 @@ export default function Search() {
     function setLyric(){
        setSong(inputLyric.current.value)
     }
-    // TODO get a string to send to Resultas
 
     return (
         <div>
-            <from>
+            <form className="border border-success p-2 w-50">
                 <fieldset>
-                    <div className="mb-3">
-                        <label htmlfor="lyric">Search for after a song:</label>
-                        <input className="form-control" type="text" id="lyric" placeholder="Enter your lyric..." ref={inputLyric} />
-                    </div>
+                    <label htmlfor="lyric">Search after a song:</label>
+                    <input className="form-control" type="text" id="lyric" placeholder="Enter your lyric..." ref={inputLyric} />
                     <input type="submit" className="btn btn-success mt-3" value="Search" onClick={setLyric} />
                 </fieldset>
-            </from>
+            </form>
             <Results item={lyric}/>
         </div>
     )
