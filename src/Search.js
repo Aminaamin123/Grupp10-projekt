@@ -1,13 +1,13 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import Results from './Results';
 
 export default function Search() {
-    const lyric = ""
+    const [lyric, setSong] = useState(null)
 
     const inputLyric = useRef();
 
     function setLyric(){
-       lyric = inputLyric.current.value
+       setSong(inputLyric.current.value)
     }
     // TODO get a string to send to Resultas
 
