@@ -18,7 +18,6 @@ export default function Results(props) {
     const urlSearchTrack = "https://api.musixmatch.com/ws/1.1/track.search?q_artist=nirvana&page_size=3&page=1&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     const axios = require('axios');
 
-
     useEffect(() => {
         // GET request using axios inside useEffect React hook
         axios.get(proxy+urlSearchLyrics)
