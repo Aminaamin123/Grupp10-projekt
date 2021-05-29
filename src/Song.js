@@ -1,5 +1,7 @@
+import { div } from 'prelude-ls';
 import React from 'react'
 import {useState, useEffect} from 'react';
+import Modal from './Modal';
 
 export default function Song(props) {
     const [info, setInfo] = useState([]);
@@ -17,14 +19,17 @@ export default function Song(props) {
                   alert(response.data.message.body.lyrics.lyrics_body)
                   
                 });
-                
     }
     return (
 
+        <div>
         <li>
             <button class="btn btn-success me-3 mb-3" onClick={() => DisplaySong()}>Preview</button>
             {props.item.track.artist_name} -
             {props.item.track.track_name}
         </li>
+        <Modal item={props.item}/> 
+        </div>
+
     )
 }

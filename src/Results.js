@@ -2,6 +2,7 @@ import React from 'react';
 import Spotify from './Spotify';
 import Song from './Song';
 
+
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 
@@ -14,7 +15,7 @@ export default function Results(props) {
     const searchWord = "looking california but feeling minnesota";
 
     const urlGetLyrics = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=11278&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
-    const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
+    const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     const urlSearchTrack = "https://api.musixmatch.com/ws/1.1/track.search?q_artist=nirvana&page_size=3&page=1&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     const axios = require('axios');
 
@@ -44,16 +45,11 @@ export default function Results(props) {
                 <ul>
                 {songs.map(song => <Song key={song.track.track_id} item={song} />) }
                 </ul>
-    
             </div>
         )
     }
     return (
         <div>
-         <ul>
-            {songs.map(song => <Song key={song.track.track_id} item={song} />) }
-        </ul>
-        <Spotify item={songs}/> 
         </div>
     )
 }
