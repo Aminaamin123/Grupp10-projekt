@@ -20,10 +20,11 @@ export default function Song(props) {
                 
     }
     return (
+
         <li>
+            <button class="btn btn-success me-3 mb-3" onClick={() => DisplaySong()}>Preview</button>
             {props.item.track.artist_name} -
             {props.item.track.track_name}
-            <p onClick={() => DisplaySong()}>X</p>
         </li>
     )
 }

@@ -24,7 +24,7 @@ export default function Results(props) {
             .then(function (response) {
               console.log(response.data)
               setSongs(response.data.message.body.track_list)
-              
+              setSongs(songs.filter((item) => item.track.track_rating > 5));
             });
     
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
