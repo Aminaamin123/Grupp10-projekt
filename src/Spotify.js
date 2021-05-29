@@ -50,7 +50,6 @@ export default function Spotify() {
       albumLink += "3a0UOgDWw2pTajw85QPMiz"
         return (
             <div>
-                <h1 className="mt-3 text-white bg-success">Spotify</h1>
                 
                 <div className="container">
                 <div class="d-flex flex-wrap">

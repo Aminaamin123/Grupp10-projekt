@@ -2,7 +2,6 @@ import React from 'react';
 import Spotify from './Spotify';
 import Song from './Song';
 
-
 import {useState, useEffect} from 'react';
 import axios from 'axios';
 

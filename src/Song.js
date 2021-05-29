@@ -24,11 +24,11 @@ export default function Song(props) {
 
         <div>
         <li>
-            <button class="btn btn-success me-3 mb-3" onClick={() => DisplaySong()}>Preview</button>
+            <Modal item={props.item}/> 
+            <button class="btn btn-success me-3 mb-3" onClick={() => DisplaySong()}> Get full lyric </button>
             {props.item.track.artist_name} -
             {props.item.track.track_name}
         </li>
-        <Modal item={props.item}/> 
         </div>
 
     )
