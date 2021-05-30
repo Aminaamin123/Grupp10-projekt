@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 
 
-export default function Spotify() {
+export default function Spotify(props) {
     const [song, setSong] = useState(null)
 
-    useEffect(() => {
+    if(props.item == true && song){
         const track = "6rqhFgbbKwnb9MLmUQDhG6" // (should be the id from Song-component) 
         var URL = 'https://api.spotify.com/v1/tracks/' // link of API
         URL += track // adding track id to link
@@ -40,52 +40,8 @@ export default function Spotify() {
             });
           }
         });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [URL])
+  }
 
-    if(song){
-      var trackLink ="https://open.spotify.com/embed/track/"
-      trackLink += "6rqhFgbbKwnb9MLmUQDhG6"
-      var albumLink ="https://open.spotify.com/embed/album/"
-      albumLink += "3a0UOgDWw2pTajw85QPMiz"
-        return (
-            <div>
-                
-                <div className="container">
-                <div class="d-flex flex-wrap">
-                  <div class="order-1 p-2">
-                    <div className="card mb-4 rounded-4 box-shadow" style={{ width: '30rem' }}>
-                        <div className="card-header">
-                          Preview of track
-                        </div> 
-                        <div className="card-body">
-                          <h4> {song.name}</h4>
-                          <iframe src={trackLink} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
-                          <form method="get" action={song.external_urls.spotify} target="blank">
-                          <button type="submit" className="btn btn-success">Take me to track</button>
-                          </form>
-                        </div>
-                      </div>
-                      </div>
-                  <div class="order-2 p-2">
-                  <div className="card mb-4 box-shadow" style={{ width: '30rem' }}>
-                        <div className="card-header">
-                          Preview of album
-                        </div> 
-                        <div className="card-body">
-                        <h4> {song.album.name}</h4>
-                          <iframe src={albumLink} width="450" height="330" allowtransparency="true" allow="encrypted-media"></iframe>
-                          <form method="get" action={song.album.external_urls.spotify} target="blank">
-                         <button type="submit" className="btn btn-success">Take me to album</button> 
-                          </form>
-                        </div>
-                      </div>
-                  </div>
-                </div>
-                </div>
-            </div>
-        )
-    }
     return(
         <div>
             Spotify - did not find song
