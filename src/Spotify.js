@@ -3,9 +3,10 @@ import React, { useState, useEffect } from 'react';
 
 export default function Spotify(props) {
     const [song, setSong] = useState(null)
+    const trackId = "https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6";
 
-    if(props.item == true && song){
         const track = "6rqhFgbbKwnb9MLmUQDhG6" // (should be the id from Song-component) 
+        const track1 = "3PeDt4Q8YIFDRph5UhxAaA"
         var URL = 'https://api.spotify.com/v1/tracks/' // link of API
         URL += track // adding track id to link
         var request = require('request');
@@ -40,11 +41,11 @@ export default function Spotify(props) {
             });
           }
         });
-  }
+  
 
     return(
         <div>
-            Spotify - did not find song
+           Spotify - did not find song
         </div>
     )
 }
