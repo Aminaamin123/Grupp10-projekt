@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import Song from './Song';
-import Modal from './Modal-test';
 import axios from 'axios';
 
 export default function Results(props) {
