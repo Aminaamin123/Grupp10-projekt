@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import Song from './Song';
 import axios from 'axios';
 import Modal from 'react-modal';
+import spinner from "./spinner.gif";
 
 export default function Results(props) {
     const [songs, setSongs] = useState([]);
@@ -45,7 +46,7 @@ export default function Results(props) {
         //{songs.map(song => <Song key={song.track.track_id} item={song} />) }
         console.log(currentSong);
         console.log(currentLyrics);   
-        if (songs.length > 1){
+        if (props.item != undefined){
             return (
                 <div>
                     <ul>
@@ -63,7 +64,7 @@ export default function Results(props) {
 
     return (
         <div>
-            TODO - loading icon 
+            <img src={spinner}/> 
         </div>
     )
 }

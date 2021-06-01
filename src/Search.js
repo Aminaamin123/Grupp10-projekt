@@ -12,8 +12,6 @@ export default function Search() {
        inputLyric.current.value = "";
     }
 
-
-
     return (
         <div>
             <form className="border border-success p-2 w-50">
