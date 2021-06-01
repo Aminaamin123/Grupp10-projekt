@@ -12,6 +12,8 @@ export default function Search() {
        inputLyric.current.value = "";
     }
 
+
+
     return (
         <div>
             <form className="border border-success p-2 w-50">
@@ -21,7 +23,7 @@ export default function Search() {
                     <input type="submit" className="btn btn-success mt-3" value="Search" onClick={setLyric} />
                 </fieldset>
             </form>
-            <Results item={lyric}/>
+            <Results item={lyric} />
         </div>
     )
 }

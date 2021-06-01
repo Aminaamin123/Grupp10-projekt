@@ -5,12 +5,14 @@ import { useState, useEffect } from 'react';
 export default function Modal(props) {
 var load = false
 
-const [song, setSong] = useState([{
-  id: "https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6"
-}])
+const startSrc = "https://open.spotify.com/embed/track/"
+const startIframe = "<iframe src="
+const endIframe = ' width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>'
+const [song, setSong] = useState("https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6")
 
 const trackId = "https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6";
 const proxy = "https://cors-anywhere.herokuapp.com/";
+//<iframe src={song} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
 
 function getSpoti(){
     const track = "6rqhFgbbKwnb9MLmUQDhG6" // (should be the id from Song-component) 
@@ -46,7 +48,9 @@ function getSpoti(){
         };
         request.get(options, function(error, response, body) {
           console.log(body); // REMOVE, test printing
-          setSong(body.tracks.items[0])          
+          setSong(startIframe + startSrc + body.tracks.items[0].id + endIframe) 
+          alert(startIframe + startSrc + body.tracks.items[0].id + endIframe);
+               
         });
       }
     });
@@ -63,7 +67,7 @@ function getSpoti(){
               <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
             <div className="modal-body">
-            <iframe src={trackId} trackId width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
+            <iframe src="https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6" width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
             </div>
             <div className="modal-footer mb-3">
             <a href="https://www.spotify.com/se/home/" > Visit spotify </a>
