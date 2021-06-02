@@ -9,6 +9,7 @@ export default function Results(props) {
     const [showModal, setShowModal] = useState(false);
     const [currentSong, setCurrentSong] = useState(false);
     const [currentLyrics, setCurrentLyrics] = useState(false);
+    const [loading, setLoading] = useState(false);
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
     //const urlGetLyrics = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=11278&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
@@ -36,6 +37,7 @@ export default function Results(props) {
             .then(function (response) {
               console.log(response.data)
               setSongs(response.data.message.body.track_list)
+              setLoading(true)
             });
     
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
@@ -49,8 +51,8 @@ export default function Results(props) {
         if (props.item != undefined){
             return (
                 <div>
-                    <ul className="pt-3">
-                        {songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />) }
+                    <ul>
+                    {loading ? songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />)  : <img src={spinner}/> }
                     </ul>
                     {<Modal
                     isOpen={showModal}>
@@ -64,7 +66,7 @@ export default function Results(props) {
 
     return (
         <div>
-            <img src={spinner}/> 
+            
         </div>
     )
 }

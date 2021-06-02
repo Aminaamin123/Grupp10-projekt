@@ -51,7 +51,7 @@ function getSpoti(){
         request.get(options, function(error, response, body) {
           console.log(body); // REMOVE, test printing
           setSong(startSrc + body.tracks.items[0].id)           
-               
+          // TODO Local Storage localStorage.setItem("Track", JSON.stringify())     
         });
       }
     });
