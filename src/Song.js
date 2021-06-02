@@ -129,17 +129,16 @@ function getSpoti(){
     return (
 
         <div>
-        <li>
+        <li className="d-flex">
                                 
         
       <div>
-        <button className="btn btn-success me-3 mb-3" onClick={sendInfo} >Preview on Spotify</button>
+        <button className="btn btn-success me-3 mb-3" onClick={sendInfo} >Preview on Spotify & Lyric</button>
 
       </div>
     
             {props.item.track.artist_name} -
             {props.item.track.track_name}
-            <button class="btn btn-success me-3 mb-3" onClick={() => DisplaySong()}> Get full lyric </button>
         </li>
         </div>
 

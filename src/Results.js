@@ -49,14 +49,14 @@ export default function Results(props) {
         if (props.item != undefined){
             return (
                 <div>
-                    <ul>
+                    <ul className="pt-3">
                         {songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />) }
                     </ul>
                     {<Modal
                     isOpen={showModal}>
-                    <h2 onClick={hideModal}>Test</h2>
-                    <a>{currentLyrics}</a>
+                    <h2 className="text-center" onClick={hideModal}>Preview and Lyrics</h2>
                     <iframe src={currentSong} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
+                    <a>{currentLyrics}</a>
                     </Modal>}
                 </div>
             )
