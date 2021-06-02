@@ -3,6 +3,7 @@ import Song from './Song';
 import axios from 'axios';
 import Modal from 'react-modal';
 import spinner from "./spinner.gif";
+import { ar } from 'date-fns/locale';
 
 export default function Results(props) {
     const [songs, setSongs] = useState([]);
@@ -10,6 +11,7 @@ export default function Results(props) {
     const [currentSong, setCurrentSong] = useState(false);
     const [currentLyrics, setCurrentLyrics] = useState(false);
     const [loading, setLoading] = useState(false);
+    const [localArray, setLocalArray] = useState([])
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
     //const urlGetLyrics = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=11278&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
@@ -17,11 +19,19 @@ export default function Results(props) {
     //const urlSearchTrack = "https://api.musixmatch.com/ws/1.1/track.search?q_artist=nirvana&page_size=3&page=1&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     const axios = require('axios');
 
-    function showModalFunction(spotify, lyric) {
+    function showModalFunction(spotify, lyric, artist, track) {
         setCurrentSong(spotify);
         setCurrentLyrics(lyric);
+        
         if(spotify == null || lyric == null){
         } else {
+            var save = JSON.parse(localStorage.getItem("track"))
+            save.unshift(artist +" "+ track)
+            if (save > 10){
+                save.pop()
+            }
+            localStorage.setItem("track", JSON.stringify(save))
+            setLocalArray(save)
             setShowModal(true)
         }
     }

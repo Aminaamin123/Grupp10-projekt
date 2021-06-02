@@ -51,7 +51,6 @@ function getSpoti(){
         request.get(options, function(error, response, body) {
           console.log(body); // REMOVE, test printing
           setSong(startSrc + body.tracks.items[0].id)           
-          // TODO Local Storage localStorage.setItem("Track", JSON.stringify())     
         });
       }
     });
@@ -101,9 +100,16 @@ function getSpoti(){
     }
 
     function sendInfo() {
+      //localStorage.setItem("track", JSON.stringify([props.item.track.track_name + " " + props.item.track.artist_name]))
+        //hämta local 
+        //array update
+        //pop - unshift 
+        //lägga nya song+artist i array
+        //skicka tillbaka
+
         getSpoti();
         DisplaySong();        
-        props.showSongModal(song, lyric)
+        props.showSongModal(song, lyric, props.item.track.artist_name, props.item.track.track_name)
         
     }
 
