@@ -14,7 +14,7 @@ export default function Search() {
 
     return (
         <div className="mx-auto">
-            <form className="border border-success p-2 w-50 mx-auto">
+            <form className="border rounded border-success p-2 w-50 mx-auto">
                 <fieldset>
                     <label htmlfor="lyric">Search after a song:</label>
                     <input className="form-control" type="text" id="lyric" placeholder="Enter your lyric..." ref={inputLyric} />

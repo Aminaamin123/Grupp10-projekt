@@ -1,5 +1,4 @@
 import React from 'react';
-//import Modal from './Modal';
 import Modal from 'react-modal';
 import { useState, useEffect } from 'react';
 
@@ -88,7 +87,7 @@ function getSpoti(){
 
     const proxy = "https://cors-anywhere.herokuapp.com/";
     const axios = require('axios');
-    const urlGetLyrics= "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=" + props.item.track.commontrack_id + "&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
+    const urlGetLyrics= "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=" + props.item.track.commontrack_id + "&apikey=993d848b2aa65108fbbb47bdb115fe6c";
     function DisplaySong(){        
             // GET request using axios inside useEffect React hook
             axios.get(proxy+urlGetLyrics)
@@ -101,18 +100,10 @@ function getSpoti(){
                 });
     }
 
-    function sendInfo() {
-      //localStorage.setItem("track", JSON.stringify([props.item.track.track_name + " " + props.item.track.artist_name]))
-        //hämta local 
-        //array update
-        //pop - unshift 
-        //lägga nya song+artist i array
-        //skicka tillbaka
-
-        getSpoti();
-        DisplaySong();        
+    async function sendInfo() {
+        await getSpoti();
+        await DisplaySong();        
         props.showSongModal(song, lyric, props.item.track.artist_name, props.item.track.track_name)
-        
     }
 
     function firstFunction(){

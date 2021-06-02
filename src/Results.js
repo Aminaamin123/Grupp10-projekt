@@ -4,6 +4,7 @@ import axios from 'axios';
 import Modal from 'react-modal';
 import spinner from "./spinner.gif";
 import PrevTrack from "./PrevTrack";
+import Previous from './Previous';
 
 export default function Results(props) {
     const [songs, setSongs] = useState([]);
@@ -17,7 +18,7 @@ export default function Results(props) {
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
     //const urlGetLyrics = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=11278&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
-    const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
+    const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=993d848b2aa65108fbbb47bdb115fe6c";
     //const urlSearchTrack = "https://api.musixmatch.com/ws/1.1/track.search?q_artist=nirvana&page_size=3&page=1&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     const axios = require('axios');
 
@@ -30,7 +31,12 @@ export default function Results(props) {
             //alert("Not available")
         } else {
             var save = JSON.parse(localStorage.getItem("track"))
-            save.unshift(artist +" - "+ track)
+            if (save != null){
+                save.unshift(artist +" - "+ track)
+            }else{
+                save = []
+                save.push(artist +" - "+ track)
+            }
             if (save.length > 3){
                 save.pop()
             }
@@ -41,19 +47,18 @@ export default function Results(props) {
     }
 
     function hideModal() {
-        console.log("STÄNG MIG!")
         setShowModal(false);
     }
     
     useEffect(() => {
+        setLoading(true)
         if (props.item != undefined) {
-
         // GET request using axios inside useEffect React hook
         axios.get(proxy+urlSearchLyrics)
             .then(function (response) {
               console.log(response.data)
               setSongs(response.data.message.body.track_list)
-              setLoading(true)
+              
             }).catch(function (error) {
                 console.log(error)
             });
@@ -65,17 +70,15 @@ export default function Results(props) {
         //console.log(songs.message.body.track_list[0].track.track_name)
         //{songs.map(song => <Song key={song.track.track_id} item={song} />) }
         console.log(currentSong);
-        console.log(currentLyrics);  
-    
-        if (props.item != undefined){
-            
+        console.log(currentLyrics); 
+        
+        console.log(localArray)
+
+        
+        if (props.item !== undefined){
             return (
                 <div>
-                    <p>Latest songs opened</p>
-                    <ul className="d-flex">
-                    {localArray.map(track => <PrevTrack item={track} />)}
-                    </ul>
-                   
+                    <Previous item={localArray} />
                     <ul className="pt-4">
                     {loading ? songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />)  : <img src={spinner}/> }
                     </ul>
@@ -95,7 +98,7 @@ export default function Results(props) {
                     </div>
 
                     <div className="modal-footer mb-3">
-                    <a href="https://www.spotify.com/se/home/" > Visit spotify </a>
+                    <a href="https://www.spotify.com/se/home/" className="btn btn-success" > Visit spotify </a>
                     </div>
 
                     </div>
@@ -106,10 +109,7 @@ export default function Results(props) {
 
     return (
         <div>
-            <p>Latest songs opened</p>
-                    <ul className="d-flex">
-                        {localArray.map(track => <PrevTrack item={track} />)}
-                    </ul>
+            <Previous item={localArray} />
         </div>
     )
 }

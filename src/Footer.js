@@ -12,7 +12,7 @@ export default function Footer() {
         </div>
         <div class="col-lg-3 col-xs-12 links">
           <h4 class="mt-lg-0 mt-sm-3">Group Members</h4>
-            <ul class="m-0 p-0">
+            <ul class="m-0 p-0 list-unstyled">
               <li>Amina Amin</li>
               <li>Tiffany Khayyami</li>
               <li>Jakob Persson</li>

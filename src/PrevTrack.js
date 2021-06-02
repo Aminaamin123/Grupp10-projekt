@@ -2,8 +2,9 @@ import React from 'react'
 
 export default function PrevTrack(props) {
     return (
-        <div>
-            <li>{props.item}</li>
-        </div>
+        <li className="me-3 list-unstyled border p-2 rounded">
+            {props.item}
+        </li>
+
     )
 }
