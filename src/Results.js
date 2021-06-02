@@ -51,7 +51,7 @@ export default function Results(props) {
         if (props.item != undefined){
             return (
                 <div>
-                    <ul>
+                    <ul className="pt-4">
                     {loading ? songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />)  : <img src={spinner}/> }
                     </ul>
                     {<Modal

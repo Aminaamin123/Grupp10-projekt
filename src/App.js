@@ -8,7 +8,7 @@ function App() {
   return (
     <div> 
       <div class="container text-center" style={{minHeight: minHeight}}>
-      <img src={logo}/>
+      <img className="img-fluid" src={logo}/>
       <p> Welcome, here you can search for song lyric and get songs that includes the lyric previewed & and a direct link to the album on spotify.  </p>
       <Search/>
       </div>
