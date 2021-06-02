@@ -50,7 +50,9 @@ function getSpoti(){
         };
         request.get(options, function(error, response, body) {
           console.log(body); // REMOVE, test printing
-          setSong(startSrc + body.tracks.items[0].id)           
+          if( body.tracks.items[0] != undefined){
+            setSong(startSrc + body.tracks.items[0].id) 
+          }          
         });
       }
     });
@@ -135,11 +137,11 @@ function getSpoti(){
     return (
 
         <div>
-        <li className="d-flex">
+        <li className="d-flex border-bottom mb-3">
                                 
         
       <div>
-        <button className="btn btn-success me-3 mb-3" onClick={sendInfo} >Preview on Spotify & Lyric</button>
+        <button className="btn btn-success me-3 mb-3" style={{width:200}}onClick={sendInfo} > Preview & Lyrics</button>
 
       </div>
     
