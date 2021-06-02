@@ -56,9 +56,23 @@ export default function Results(props) {
                     </ul>
                     {<Modal
                     isOpen={showModal}>
-                    <h2 className="text-center" onClick={hideModal}>Preview and Lyrics</h2>
+                    <div className="modal-content">
+
+                    <div className="modal-header">
+                    <button onClick={hideModal} type="button" className="btn btn-secondary float-right">Close</button>
+                    <h2 className="mt-3 text-white bg-success ps-1 pe-4 text-center" >Preview and Lyrics</h2>
+                    </div>
+
+                    <div className="modal-body">
                     <iframe src={currentSong} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
                     <a>{currentLyrics}</a>
+                    </div>
+
+                    <div className="modal-footer mb-3">
+                    <a href="https://www.spotify.com/se/home/" > Visit spotify </a>
+                    </div>
+
+                    </div>
                     </Modal>}
                 </div>
             )
