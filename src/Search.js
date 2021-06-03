@@ -3,15 +3,16 @@ import Results from './Results';
 
 export default function Search() {
     const [lyric, setSong] = useState(null)
+    const inputLyric = useRef(); 
 
-    const inputLyric = useRef();
-
-    function setLyric(event){
+    // retriving the input
+    function setLyric(event){ 
        event.preventDefault();
        setSong(inputLyric.current.value)
        inputLyric.current.value = "";
     }
 
+    //search form to retrive input from user - sent input to result component
     return (
         <div className="mx-auto">
             <form className="border rounded border-success p-2 w-50 mx-auto">

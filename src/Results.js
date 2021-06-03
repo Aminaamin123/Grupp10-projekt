@@ -1,9 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import Song from './Song';
-import axios from 'axios';
 import Modal from 'react-modal';
 import spinner from "./spinner.gif";
-import PrevTrack from "./PrevTrack";
 import Previous from './Previous';
 
 export default function Results(props) {
@@ -17,19 +15,19 @@ export default function Results(props) {
     const [localArray, setLocalArray] = useState(JSON.parse(localStorage.getItem("track")))
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
-    //const urlGetLyrics = "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=11278&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
+    //set api link with the search props retrived in search component
     const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=993d848b2aa65108fbbb47bdb115fe6c";
-    //const urlSearchTrack = "https://api.musixmatch.com/ws/1.1/track.search?q_artist=nirvana&page_size=3&page=1&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     const axios = require('axios');
 
     function showModalFunction(spotify, lyric, artist, track) {
+        //retriving and saving data to use in modal
         setCurrentSong(spotify);
         setCurrentLyrics(lyric);
         setCurrentArtist(artist);
         setCurrentTrack(track);
-        if(spotify == null || lyric == null){
-            //alert("Not available")
-        } else {
+        if(spotify == null || lyric == null){ //when the song does not exist on spotify or have lyric, show alert
+            //TODO - (when button works!) alert("Not available") 
+        } else { // set pervious song array and open modal
             var save = JSON.parse(localStorage.getItem("track"))
             if (save != null){
                 save.unshift(artist +" - "+ track)
@@ -50,57 +48,45 @@ export default function Results(props) {
         setShowModal(false);
     }
     
-    useEffect(() => {
+    useEffect(() => { //TODO - how can we run without the function running in the beginning?
         setLoading(true)
-        if (props.item != undefined) {
+        if (props.item !== undefined) {
         // GET request using axios inside useEffect React hook
         axios.get(proxy+urlSearchLyrics)
             .then(function (response) {
-              console.log(response.data)
               setSongs(response.data.message.body.track_list)
-              
             }).catch(function (error) {
                 console.log(error)
             });
         }
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, [urlSearchLyrics]);
-        //console.log(songs);
-        //console.log(songs.message.body.lyrics.lyrics_id);
-        //console.log(songs.message.body.track_list[0].track.track_name)
-        //{songs.map(song => <Song key={song.track.track_id} item={song} />) }
-        console.log(currentSong);
-        console.log(currentLyrics); 
-        
-        console.log(localArray)
+    }, [urlSearchLyrics]); 
 
-        
-        if (props.item !== undefined){
+        if (props.item !== undefined){ //while there is a search
             return (
                 <div>
-                    <Previous item={localArray} />
+                    <Previous item={localArray} /> {/* TODO - text responsive */}
                     <ul className="pt-4">
-                    {loading ? songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />)  : <img src={spinner}/> }
+                    {loading ? songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />)  : <img src={spinner} alt="spinner"/> }
                     </ul>
-                    {<Modal
+                    {/* TODO - modal responsive */}
+                    {<Modal  
                     isOpen={showModal}>
                     <div className="modal-content">
 
-                    <div className="modal-header">
-                    <h2 className="mt-3 text-white bg-success ps-1 pe-4 text-center" >{currentArtist} - {currentTrack}</h2>
-                    <button onClick={hideModal} type="button" className="btn btn-secondary float-right">Close</button>
-                    
-                    </div>
+                        <div className="modal-header">
+                            <h2 className="mt-3 text-white bg-success ps-1 pe-4 text-center" >{currentArtist} - {currentTrack}</h2>
+                            <button onClick={hideModal} type="button" className="btn btn-secondary float-right">Close</button>
+                        </div>
 
-                    <div className="modal-body">
-                    <iframe src={currentSong} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
-                    <p>{currentLyrics}</p>
-                    </div>
+                        <div className="modal-body">
+                            <iframe src={currentSong} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
+                            <p>{currentLyrics}</p>
+                        </div>
 
-                    <div className="modal-footer mb-3">
-                    <a href="https://www.spotify.com/se/home/" className="btn btn-success" > Visit spotify </a>
-                    </div>
-
+                        <div className="modal-footer mb-3">
+                            <a href="https://www.spotify.com/se/home/" className="btn btn-success" > Visit spotify </a>
+                        </div>
                     </div>
                     </Modal>}
                 </div>

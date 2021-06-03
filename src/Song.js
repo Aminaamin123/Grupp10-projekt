@@ -1,23 +1,14 @@
 import React from 'react';
-import Modal from 'react-modal';
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 
 export default function Song(props) {
 
 const startSrc = "https://open.spotify.com/embed/track/"
-const startIframe = "<iframe src="
-const endIframe = ' width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>'
 const [song, setSong] = useState(null)
 const [lyric, setLyrics] = useState(null)
 
 
-const trackId = "https://open.spotify.com/embed/track/6rqhFgbbKwnb9MLmUQDhG6";
-//const proxy = "https://cors-anywhere.herokuapp.com/";
-//<iframe src={song} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
-
 function getSpoti(){
-    const track = "6rqhFgbbKwnb9MLmUQDhG6" // (should be the id from Song-component) 
-    const track1 = "3PeDt4Q8YIFDRph5UhxAaA"
     const searchWord = "q="+ props.item.track.artist_name +"%20"+props.item.track.track_name+"&type=track"
     var URL = proxy + 'https://api.spotify.com/v1/search?' // link of API
     URL += searchWord // adding track id to link
@@ -48,42 +39,13 @@ function getSpoti(){
           json: true
         };
         request.get(options, function(error, response, body) {
-          console.log(body); // REMOVE, test printing
           if( body.tracks.items[0] != undefined){
             setSong(startSrc + body.tracks.items[0].id) 
           }          
         });
       }
     });
-    
   }
-
-    const customStyles = {
-        content : {
-          top                   : '50%',
-          left                  : '50%',
-          right                 : 'auto',
-          bottom                : 'auto',
-          marginRight           : '-50%',
-          transform             : 'translate(-50%, -50%)'
-        }
-      };
-    
-      var subtitle;
-      const [modalIsOpen,setIsOpen] = React.useState(false);
-      function openModal() {
-        getSpoti();
-        setIsOpen(true);
-      }
-    
-      function afterOpenModal() {
-        // references are now sync'd and can be accessed.
-        subtitle.style.color = '#f00';
-      }
-    
-      function closeModal(){
-        setIsOpen(false);
-      }
 
     const proxy = "https://cors-anywhere.herokuapp.com/";
     const axios = require('axios');
@@ -92,69 +54,29 @@ function getSpoti(){
             // GET request using axios inside useEffect React hook
             axios.get(proxy+urlGetLyrics)
                 .then(function (response) {
-                  console.log(response.data)
                   setLyrics(response.data.message.body.lyrics.lyrics_body)
-                  
-                  //alert(response.data.message.body.lyrics.lyrics_body)
-                  //return (response.data.message.body.lyrics.lyrics_body);
                 });
     }
 
-    async function sendInfo() {
+    async function sendInfo() { //onclick sending nessesary info & calling on the modual
+        // TODO do some asynchronous work
+        // TODO and other when the asynchronous stuff is complete     
         await getSpoti();
-        await DisplaySong();        
-        props.showSongModal(song, lyric, props.item.track.artist_name, props.item.track.track_name)
+        await DisplaySong(); 
+        secondFunction();       
     }
-
-    function firstFunction(){
-        // do some asynchronous work
-        // and when the asynchronous stuff is complete            
-        getSpoti();
-        DisplaySong(); 
-    }
-
     function secondFunction () {
-        getSpoti()
-                .then(function () {
-                  
-                  props.showSongModal(song, lyric);
-                  
-                  //alert(response.data.message.body.lyrics.lyrics_body)
-                  //return (response.data.message.body.lyrics.lyrics_body);
-                });
+      props.showSongModal(song, lyric, props.item.track.artist_name, props.item.track.track_name)
     }
-    
 
-    return (
-
+    return ( // display song matches in a list, with an onclick to open the modal
         <div>
-        <li className="d-flex border-bottom mb-3">
-                                
-        
-      <div>
-        <button className="btn btn-success me-3 mb-3" style={{width:200}}onClick={sendInfo} > Preview & Lyrics</button>
-
-      </div>
-    
-            {props.item.track.artist_name} -
-            {props.item.track.track_name}
-        </li>
+          <li className="d-flex border-bottom mb-3">
+            <div>
+              <button className="btn btn-success me-3 mb-3" style={{width:200}}onClick={sendInfo} > Preview & Lyrics</button>
+            </div>
+              <p>{props.item.track.artist_name} - {props.item.track.track_name}</p>
+          </li>
         </div>
-
-        
-
-    )/*
-    <Modal
-    isOpen={modalIsOpen}
-    onAfterOpen={afterOpenModal}
-    onRequestClose={closeModal}
-    style={customStyles}
-    contentLabel="Example Modal"
-  >
-
-    <h2 ref={_subtitle => (subtitle = _subtitle)}>Hello</h2>
-    <button type="button" className="btn btn-secondary" onClick={closeModal}>Close</button>
-    <h1 className="mt-3 text-white bg-success ps-1 pe-4">Spotify</h1>
-    <iframe src={song} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
-  </Modal>*/
+    )
 }
