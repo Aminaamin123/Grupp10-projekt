@@ -6,3 +6,17 @@ body{
     background-position: center;
     background-size: auto;
 }
+
+#lyric{
+    background-color: rgb(223, 244, 242);
+    
+}
+
+@media screen and (max-width: 692px) {
+    #img-logo{
+        width: 50% !important;
+    }
+    .previewBtn{
+        width: 150px !important;
+    }
+  }

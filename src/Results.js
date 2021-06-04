@@ -62,7 +62,7 @@ export default function Results(props) {
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, [urlSearchLyrics]); 
 
-        if (props.item !== undefined){ //while there is a search
+        if (props.item !== undefined || props.item !== null){ //while there is a search
             return (
                 <div>
                     <Previous item={localArray} /> {/* TODO - text responsive */}
@@ -85,7 +85,7 @@ export default function Results(props) {
                         </div>
 
                         <div className="modal-footer mb-3">
-                            <a href="https://www.spotify.com/se/home/" className="btn btn-success" > Visit spotify </a>
+                            <a href={currentSong} className="btn btn-success" > Visit spotify </a>
                         </div>
                     </div>
                     </Modal>}

@@ -8,8 +8,8 @@ function App() {
   return (
     <div> 
       <div class="container text-center" style={{minHeight: minHeight}}>
-      <img className="img-fluid" style={{width: widthImg}} src={logo}/>
-      <p> Welcome, here you can search for song lyric and get songs that includes the lyric previewed & and a direct link to the album on spotify.  </p>
+      <img className="img-fluid" id="img-logo" style={{width: widthImg}} src={logo}/>
+      <p> Welcome, here you can search for song lyric and get a song list of matches, that includes the lyric, preview on Spotify & and a direct link to the track on spotify.  </p>
       <Search/>
       </div>
       <Footer/> 

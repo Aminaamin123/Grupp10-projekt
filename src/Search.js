@@ -15,9 +15,8 @@ export default function Search() {
     //search form to retrive input from user - sent input to result component
     return (
         <div className="mx-auto">
-            <form className="border rounded border-success p-2 w-50 mx-auto">
+            <form className="p-2 w-50 mx-auto">
                 <fieldset>
-                    <label htmlfor="lyric">Search after a song:</label>
                     <input className="form-control" type="text" id="lyric" placeholder="Enter your lyric..." ref={inputLyric} />
                     <input type="submit" className="btn btn-success mt-3" value="Search" onClick={setLyric} />
                 </fieldset>
