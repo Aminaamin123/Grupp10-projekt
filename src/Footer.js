@@ -26,7 +26,8 @@ export default function Footer() {
       </div>
       <div class="row mt-5">
         <div class="col copyright">
-          <p><small class="text-black-50">© 2020. All Rights Reserved.</small></p>
+          <p>Lyrics powered by www.musiXmatch.com</p>
+          <p><small class="text-black-50">© 2021. All Rights Reserved.</small></p>
         </div>
       </div>
     </div>
