@@ -78,12 +78,12 @@ export default function Results(props) {
                     {<Modal  
                     isOpen={showModal}>
                     <div className="modal-content">
-                        <div className="">
-                            <button onClick={hideModal} type="button" className="btn btn-secondary">Close</button>
+                        <div className="btn pull-right">
+                            <button id="closebtn" onClick={hideModal} type="button" className="btn btn-secondary">Close</button>
                         </div>
 
                         <div className="modal-header">
-                            <h2 className="mt-3 text-white bg-success ps-1 pe-4 text-center" >{currentArtist} - {currentTrack}</h2>                        </div>
+                            <h2 className="mt-3 text-white bg-success ps-1 pe-4 mx-auto" >{currentArtist} - {currentTrack}</h2>                        </div>
 
                         <div className="modal-body">
                             
