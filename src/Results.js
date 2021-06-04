@@ -83,7 +83,7 @@ export default function Results(props) {
                         <div className="modal-body">
                             
                             <div className="container">
-                                <iframe className="embed-responsive-item w-100" src={currentSong} allowtransparency="true" allowfullscreen allow="encrypted-media"> </iframe>
+                                <iframe className="embed-responsive-item w-100" src={currentSong} height="400" allowtransparency="true" allowfullscreen allow="encrypted-media"> </iframe>
                             </div>
                             <p>{currentLyrics}</p>
                         </div>
