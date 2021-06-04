@@ -73,14 +73,18 @@ export default function Results(props) {
                     {<Modal  
                     isOpen={showModal}>
                     <div className="modal-content">
-
-                        <div className="modal-header">
-                            <h2 className="mt-3 text-white bg-success ps-1 pe-4 text-center" >{currentArtist} - {currentTrack}</h2>
-                            <button onClick={hideModal} type="button" className="btn btn-secondary float-right">Close</button>
+                        <div className="">
+                            <button onClick={hideModal} type="button" className="btn btn-secondary">Close</button>
                         </div>
 
+                        <div className="modal-header">
+                            <h2 className="mt-3 text-white bg-success ps-1 pe-4 text-center" >{currentArtist} - {currentTrack}</h2>                        </div>
+
                         <div className="modal-body">
-                            <iframe src={currentSong} width="450" height="330" allowtransparency="true" allow="encrypted-media"> </iframe>
+                            
+                            <div className="container">
+                                <iframe className="embed-responsive-item w-100" src={currentSong} allowtransparency="true" allowfullscreen allow="encrypted-media"> </iframe>
+                            </div>
                             <p>{currentLyrics}</p>
                         </div>
 
