@@ -6,6 +6,7 @@ export default function Song(props) {
 const startSrc = "https://open.spotify.com/embed/track/"
 const [song, setSong] = useState(null)
 const [lyric, setLyrics] = useState(null)
+const [link, setLink] = useState(null)
 
 
 function getSpoti(){
@@ -40,6 +41,7 @@ function getSpoti(){
         };
         request.get(options, function(error, response, body) {
           if( body.tracks.items[0] !== undefined){
+            setLink(body.tracks.items[0].external_urls.spotify)
             setSong(startSrc + body.tracks.items[0].id) 
           }          
         });
@@ -67,7 +69,7 @@ function getSpoti(){
         secondFunction();       
     }
     function secondFunction () {
-      props.showSongModal(song, lyric, props.item.track.artist_name, props.item.track.track_name)
+      props.showSongModal(song, lyric, link, props.item.track.artist_name, props.item.track.track_name)
     }
 
     return ( // display song matches in a list, with an onclick to open the modal

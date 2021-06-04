@@ -22,7 +22,7 @@ body{
     .row{
         display: block !important;
     }
-    .col:nth-child(){
+    .col{
         margin-bottom: 5px !important;
     }
   }

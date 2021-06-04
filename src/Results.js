@@ -11,20 +11,25 @@ export default function Results(props) {
     const [currentLyrics, setCurrentLyrics] = useState(false);
     const [currentArtist, setCurrentArtist] = useState(false);
     const [currentTrack, setCurrentTrack] = useState(false);
+    const [currentLink, setCurrentLink] = useState(false);
     const [loading, setLoading] = useState(false);
     const [localArray, setLocalArray] = useState(JSON.parse(localStorage.getItem("track")))
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
     //set api link with the search props retrived in search component
-    const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
+    var urlSearchLyrics
+    if (props.item !== null){
+        urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
+    }
     const axios = require('axios');
 
-    function showModalFunction(spotify, lyric, artist, track) {
+    function showModalFunction(spotify, lyric, link, artist, track) {
         //retriving and saving data to use in modal
         setCurrentSong(spotify);
         setCurrentLyrics(lyric);
         setCurrentArtist(artist);
         setCurrentTrack(track);
+        setCurrentLink(link);
         if(spotify == null || lyric == null){ //when the song does not exist on spotify or have lyric, show alert
             //TODO - (when button works!) alert("Not available") 
         } else { // set pervious song array and open modal
@@ -48,12 +53,13 @@ export default function Results(props) {
         setShowModal(false);
     }
     
-    useEffect(() => { //TODO - how can we run without the function running in the beginning?
+    useEffect(() => { 
         setLoading(true)
-        if (props.item !== undefined) {
+        if (props.item !== null) {
         // GET request using axios inside useEffect React hook
         axios.get(proxy+urlSearchLyrics)
             .then(function (response) {
+                console.log("köööörs")
               setSongs(response.data.message.body.track_list)
             }).catch(function (error) {
                 console.log(error)
@@ -62,7 +68,7 @@ export default function Results(props) {
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
     }, [urlSearchLyrics]); 
 
-        if (props.item !== undefined || props.item !== null){ //while there is a search
+        if (props.item !== undefined || props.item !== null || props.item !== "null"){ //while there is a search
             return (
                 <div>
                     <Previous item={localArray} />
@@ -88,7 +94,7 @@ export default function Results(props) {
                         </div>
 
                         <div className="modal-footer mb-3">
-                            <a href={currentSong} target="_blank" className="btn btn-success" > Visit spotify </a>
+                            <a href={currentLink} target="_blank" className="btn btn-success" > Visit spotify </a>
                         </div>
                     </div>
                     </Modal>}
