@@ -39,7 +39,7 @@ function getSpoti(){
           json: true
         };
         request.get(options, function(error, response, body) {
-          if( body.tracks.items[0] != undefined){
+          if( body.tracks.items[0] !== undefined){
             setSong(startSrc + body.tracks.items[0].id) 
           }          
         });
@@ -49,12 +49,13 @@ function getSpoti(){
 
     const proxy = "https://cors-anywhere.herokuapp.com/";
     const axios = require('axios');
-    const urlGetLyrics= "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=" + props.item.track.commontrack_id + "&apikey=993d848b2aa65108fbbb47bdb115fe6c";
+    const urlGetLyrics= "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=" + props.item.track.commontrack_id + "&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     function DisplaySong(){        
             // GET request using axios inside useEffect React hook
             axios.get(proxy+urlGetLyrics)
                 .then(function (response) {
-                  setLyrics(response.data.message.body.lyrics.lyrics_body)
+                  var array = response.data.message.body.lyrics.lyrics_body.split("*******");
+                  setLyrics(array[0])
                 });
     }
 

@@ -16,7 +16,7 @@ export default function Results(props) {
     const proxy = "https://cors-anywhere.herokuapp.com/";
 
     //set api link with the search props retrived in search component
-    const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=993d848b2aa65108fbbb47bdb115fe6c";
+    const urlSearchLyrics = "https://api.musixmatch.com/ws/1.1/track.search?q_lyrics="+ props.item + "&page_size=50&s_track_rating=desc&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
     const axios = require('axios');
 
     function showModalFunction(spotify, lyric, artist, track) {
@@ -65,11 +65,10 @@ export default function Results(props) {
         if (props.item !== undefined || props.item !== null){ //while there is a search
             return (
                 <div>
-                    <Previous item={localArray} /> {/* TODO - text responsive */}
+                    <Previous item={localArray} />
                     <ul className="pt-4">
                     {loading ? songs.map(song => <Song key={song.track.track_id} item={song} showSongModal={showModalFunction} />)  : <img src={spinner} alt="spinner"/> }
                     </ul>
-                    {/* TODO - modal responsive */}
                     {<Modal  
                     isOpen={showModal}>
                     <div className="modal-content">
@@ -89,7 +88,7 @@ export default function Results(props) {
                         </div>
 
                         <div className="modal-footer mb-3">
-                            <a href={currentSong} className="btn btn-success" > Visit spotify </a>
+                            <a href={currentSong} target="_blank" className="btn btn-success" > Visit spotify </a>
                         </div>
                     </div>
                     </Modal>}

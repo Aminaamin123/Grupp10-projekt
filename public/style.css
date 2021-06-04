@@ -19,4 +19,10 @@ body{
     .previewBtn{
         width: 150px !important;
     }
+    .row{
+        display: block !important;
+    }
+    .col:nth-child(){
+        margin-bottom: 5px !important;
+    }
   }
