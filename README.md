@@ -51,7 +51,7 @@ We chose to work with React for this project. All of the team members used React
 Large framework with what we perceived as a steep learning curve. The amount of features seemed excessive in relation to the scale of our project and we wanted to quickly get started and have the application up and running.
 
 ## Vue
-If we didn´t use React we probably would have chosen Vue. In relation to React it seemed to have roughly the same learning curve and complexity. Usage of Vue is on the rise but not quite on the level of React (for the time being). However, Vue has a smaller community than React and may therefore lack some plugins. The deciding factor to use React was the amount of online example and guidance in favor of React and the teams prior usage of React led us to feel more comfortable continuing use and learn React.
+If we didn´t use React we probably would have chosen Vue. In relation to React it seemed to have roughly the same learning curve and complexity. Usage of Vue is on the rise but not quite on the level of React (for the time being). However, this also includes that Vue has a smaller community than React and may therefore lack some plugins. The deciding factor to use React was the amount of online example and guidance in favor of React and the teams prior usage of React led us to feel more comfortable continuing use and learn React.
 
 
 
