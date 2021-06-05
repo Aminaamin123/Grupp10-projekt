@@ -52,22 +52,25 @@ function getSpoti(){
     const proxy = "https://cors-anywhere.herokuapp.com/";
     const axios = require('axios');
     const urlGetLyrics= "https://api.musixmatch.com/ws/1.1/track.lyrics.get?commontrack_id=" + props.item.track.commontrack_id + "&apikey=e9882bc5eb026434a2d1fadbecb10d5a";
-    function DisplaySong(){        
+    function displaySong(){        
             // GET request using axios inside useEffect React hook
             axios.get(proxy+urlGetLyrics)
                 .then(function (response) {
                   var array = response.data.message.body.lyrics.lyrics_body.split("*******");
-                  setLyrics(array[0])
-                });
+                  setLyrics(array[0])                  
+                });                
     }
 
     async function sendInfo() { //onclick sending nessesary info & calling on the modual
         // TODO do some asynchronous work
         // TODO and other when the asynchronous stuff is complete     
-        await getSpoti();
-        await DisplaySong(); 
-        secondFunction();       
+                
+        props.showSongModal(urlGetLyrics, props.item.track.artist_name, props.item.track.track_name);
+        //await getSpoti()
+        //await displaySong();        
+        //secondFunction();       
     }
+
     function secondFunction () {
       props.showSongModal(song, lyric, link, props.item.track.artist_name, props.item.track.track_name)
     }

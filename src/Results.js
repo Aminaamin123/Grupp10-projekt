@@ -15,6 +15,7 @@ export default function Results(props) {
     const [loading, setLoading] = useState(false);
     const [localArray, setLocalArray] = useState(JSON.parse(localStorage.getItem("track")))
     const proxy = "https://cors-anywhere.herokuapp.com/";
+    const startSpotifySrc = "https://open.spotify.com/embed/track/"
 
     //set api link with the search props retrived in search component
     var urlSearchLyrics
@@ -23,14 +24,70 @@ export default function Results(props) {
     }
     const axios = require('axios');
 
-    function showModalFunction(spotify, lyric, link, artist, track) {
+    function getSpotify(searchArtist, searchTrack){
+        const searchWord = "q="+ searchArtist +"%20"+ searchTrack +"&type=track"
+        var URL = proxy + 'https://api.spotify.com/v1/search?' // link of API
+        URL += searchWord // adding track id to link
+        var request = require('request');
+        // client credentials 
+        var client_id = 'b936ad39fb5d455d9feaf0d6e67b51cd'; // client id
+        var client_secret = '145d66c67c274bfd867441f32a30354e'; //  secret
+        // requests authorization
+        var authOptions = {
+          url: proxy + 'https://accounts.spotify.com/api/token',
+          headers: {
+            'Authorization': 'Basic ' + (new Buffer(client_id + ':' + client_secret).toString('base64'))
+          },
+          form: {
+            grant_type: 'client_credentials'
+          },
+          json: true
+        };
+        // request the song from spotify by id
+        request.post(authOptions, function(error, response, body) {
+          if (!error && response.statusCode === 200) {
+            var token = body.access_token; 
+            var options = {
+              url: URL,
+              headers: {
+                'Authorization': 'Bearer ' + token 
+              },
+              json: true
+            };
+            request.get(options, function(error, response, body) {
+              if( body.tracks.items[0] !== undefined){
+                setCurrentLink(body.tracks.items[0].external_urls.spotify)
+                setCurrentSong(startSpotifySrc + body.tracks.items[0].id)  
+                setShowModal(true)          
+              } else {
+                  setCurrentSong(startSpotifySrc);
+                  setCurrentLink("https://open.spotify.com/")
+                  setShowModal(true)
+              }          
+            });
+          }
+        });
+      }
+
+    function getLyrics(urlGetLyrics){        
+        // GET request using axios inside useEffect React hook
+        axios.get(proxy+urlGetLyrics)
+            .then(function (response) {
+              var array = response.data.message.body.lyrics.lyrics_body.split("*******");
+              setCurrentLyrics(array[0])
+              
+            });
+            
+    }
+
+    function showModalFunction(lyric, artist, track) {
         //retriving and saving data to use in modal
-        setCurrentSong(spotify);
-        setCurrentLyrics(lyric);
+        getSpotify(artist, track)
+        getLyrics(lyric)
         setCurrentArtist(artist);
         setCurrentTrack(track);
-        setCurrentLink(link);
-        if(spotify == null || lyric == null){ //when the song does not exist on spotify or have lyric, show alert
+        
+        if(currentSong == null || lyric == null){ //when the song does not exist on spotify or have lyric, show alert
             //TODO - (when button works!) alert("Not available") 
         } else { // set pervious song array and open modal
             var save = JSON.parse(localStorage.getItem("track"))
@@ -45,7 +102,7 @@ export default function Results(props) {
             }
             localStorage.setItem("track", JSON.stringify(save))
             setLocalArray(save)
-            setShowModal(true)
+            //setShowModal(true)
         }
     }
 
