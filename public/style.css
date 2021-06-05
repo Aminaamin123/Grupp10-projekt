@@ -16,6 +16,10 @@ body{
     float: right !important;
 }
 
+#iframeSpotify{
+    width: 65%;
+}
+
 @media screen and (max-width: 692px) {
     #img-logo{
         width: 50% !important;
@@ -28,5 +32,9 @@ body{
     }
     .col{
         margin-bottom: 5px !important;
+    }
+    #iframeSpotify{
+        width: 100% !important;
+        color: black;
     }
   }

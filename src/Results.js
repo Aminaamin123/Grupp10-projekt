@@ -86,10 +86,6 @@ export default function Results(props) {
         getLyrics(lyric)
         setCurrentArtist(artist);
         setCurrentTrack(track);
-        
-        if(currentSong == null || lyric == null){ //when the song does not exist on spotify or have lyric, show alert
-            //TODO - (when button works!) alert("Not available") 
-        } else { // set pervious song array and open modal
             var save = JSON.parse(localStorage.getItem("track"))
             if (save != null){
                 save.unshift(artist +" - "+ track)
@@ -104,7 +100,7 @@ export default function Results(props) {
             setLocalArray(save)
             //setShowModal(true)
         }
-    }
+    
 
     function hideModal() {
         setShowModal(false);
@@ -116,7 +112,6 @@ export default function Results(props) {
         // GET request using axios inside useEffect React hook
         axios.get(proxy+urlSearchLyrics)
             .then(function (response) {
-                console.log("köööörs")
               setSongs(response.data.message.body.track_list)
             }).catch(function (error) {
                 console.log(error)
@@ -144,8 +139,8 @@ export default function Results(props) {
 
                         <div className="modal-body">
                             
-                            <div className="container">
-                                <iframe className="embed-responsive-item w-100" src={currentSong} height="400" allowtransparency="true" allowfullscreen allow="encrypted-media"> </iframe>
+                            <div className="container text-center">
+                                <iframe className="embed-responsive-item" id="iframeSpotify" src={currentSong} height="400" allowtransparency="true" allowfullscreen allow="encrypted-media"> </iframe>
                             </div>
                             <p>{currentLyrics}</p>
                         </div>
