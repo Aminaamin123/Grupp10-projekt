@@ -11,13 +11,11 @@ export default function Song(props) {
     }
 
     return ( // display song matches in a list, with an onclick to open the modal
-        <div>
           <li className="d-flex border-bottom mb-3">
             <div>
             <button className="btn btn-success previewBtn me-3 mb-3" style={{width:200}}onClick={sendInfo} > Preview & Lyrics</button>
             </div>
               <p>{props.item.track.artist_name} - {props.item.track.track_name}</p>
           </li>
-        </div>
     )
 }
