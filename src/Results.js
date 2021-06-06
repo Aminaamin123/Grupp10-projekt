@@ -118,9 +118,9 @@ export default function Results(props) {
             });
         }
     // empty dependency array means this effect will only run once (like componentDidMount in classes)
-    }, [urlSearchLyrics]); 
+    }, [urlSearchLyrics]);
 
-        if (props.item !== undefined || props.item !== null || props.item !== "null"){ //while there is a search
+        if (props.item !== null){ //while there is a search
             return (
                 <div>
                     <Previous item={localArray} />
@@ -154,7 +154,7 @@ export default function Results(props) {
             )
         }
 
-    return (
+    return ( //while there is no search
         <div>
             <Previous item={localArray} />
         </div>
