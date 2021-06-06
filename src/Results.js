@@ -117,7 +117,7 @@ export default function Results(props) {
                 console.log(error)
             });
         }
-    // empty dependency array means this effect will only run once (like componentDidMount in classes)
+    
     }, [urlSearchLyrics]);
 
         if (props.item !== null){ //while there is a search
@@ -140,7 +140,7 @@ export default function Results(props) {
                         <div className="modal-body">
                             
                             <div className="container text-center">
-                                <iframe className="embed-responsive-item" id="iframeSpotify" src={currentSong} height="400" allowtransparency="true" allowfullscreen allow="encrypted-media"> </iframe>
+                                <iframe className="embed-responsive-item" id="iframeSpotify" src={currentSong} height="80" allowtransparency="true" allowfullscreen allow="encrypted-media"> </iframe>
                             </div>
                             <p>{currentLyrics}</p>
                         </div>
